@@ -1,9 +1,9 @@
-SRCS = $(shell find src -name "*.c")
+SRCS = $(shell find . -name "*.c")
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 INC = include/philosophers.h
 NAME = philo
-
+#! Create objects in a seperated folder
 all : $(NAME)
 
 $(NAME) : $(OBJS)

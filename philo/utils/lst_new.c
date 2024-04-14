@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lst_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 02:21:01 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/14 19:04:29 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/04/03 00:35:40 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/04/12 17:17:26 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#include "../include/utils.h"
 
-void	destroy_object(void *obj)
+t_list	*lst_new(void *content)
 {
-	return ;
-}
+	t_list	*head;
 
-int	main(int ac, char *av[])
-{
-	t_object	obj;
-
-	if (ac < 5 || ac > 6)
-		return (printf(FORMAT_ERROR), EXIT_FAILURE);
-	memset(&obj, 0, sizeof(t_object));
-	if (!settings_init(&obj.settings, av + 1))
-		return (printf("Invalid Input\n"), EXIT_FAILURE);
-	if (philos_init(&obj) == 0)
-		return (EXIT_FAILURE);
-	while (1)
-		;
+	head = (t_list *)malloc(sizeof(t_list));
+	if (!head)
+		return (NULL);
+	head->content = content;
+	head->previous = NULL;
+	head->next = NULL;
+	return (head);
 }

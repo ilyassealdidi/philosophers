@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"philosophers.h": "c"
+		"philosophers.h": "c",
+		"utils.h": "c",
+		"pthread.h": "c",
+		"limits.h": "c",
+		"time.h": "c",
+		"string.h": "c"
 	}
 }
