@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:12:24 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/14 19:09:18 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/15 12:35:12 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,16 @@ void	*routine(void *param)
 	{
 		pthread_mutex_lock(&philo->fork);
 		printf("Philo %d has taken a fork\n", philo->id);
-		usleep(obj->settings.time_to_eat);
+
 		pthread_mutex_lock(&sib->fork);
 		printf("Philo %d has taken a fork\n", philo->id);
 		pthread_mutex_unlock(&sib->fork);
 		pthread_mutex_unlock(&philo->fork);
+
+		printf("Philo %d is eating\n", philo->id);
+		usleep(obj->settings.time_to_eat);
+
+		printf("Philo %d is sleeping\n", philo->id);
 		usleep(obj->settings.time_to_sleep);
 	}
 	printf("End\n");

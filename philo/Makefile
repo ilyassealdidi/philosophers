@@ -1,19 +1,21 @@
 SRCS = $(shell find . -name "*.c")
-OBJS = $(SRCS:.c=.o)
+OBJS_DIR = obj/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 CFLAGS = #-Wall -Wextra -Werror
 INC = include/philosophers.h
 NAME = philo
-#! Create objects in a seperated folder
+
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	cc $(OBJS) -o $(NAME)
 
-%.o : %.c $(INC)
+$(OBJS_DIR)%.o : %.c $(INC)
+	@mkdir -p $(dir $@)
 	cc $(CFLAGS) -c $< -o $@
 
-clean : 
-	$(RM) $(OBJS)
+clean :
+	$(RM) -r $(OBJS_DIR)
 
 fclean : clean
 	$(RM) $(NAME)
