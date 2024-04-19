@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/14 16:50:35 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/19 11:23:59 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	threads_init(t_list *philos, int count)
 {
 	int				i;
 	t_philosopher	*philo;
-	
+
 	i = -1;
 	while (++i < count)
 	{
@@ -40,18 +40,7 @@ static int	threads_init(t_list *philos, int count)
 			return (0);
 		philos = philos->next;
 	}
-	
 	return (1);
-}
-
-long	get_current_time()
-{
-	struct timeval start;
-	unsigned long e_usec;
-
-	if (gettimeofday(&start, NULL) != 0)
-		return (0);
-	return (start.tv_sec * 1e6 + start.tv_usec);
 }
 
 int	philos_init(t_object *obj)
@@ -61,6 +50,9 @@ int	philos_init(t_object *obj)
 	t_philosopher	*philosopher;
 
 	i = -1;
+	pthread_mutex_init(&obj->tools.printing_mtx, NULL);
+	pthread_mutex_init(&obj->tools.mtx, NULL);
+	pthread_mutex_init(&obj->tools.philo_mtx, NULL);
 	while (++i < obj->settings.num_of_philos)
 	{
 		philosopher = create_philosopher(i + 1, obj);
@@ -78,3 +70,13 @@ int	philos_init(t_object *obj)
 		return (lst_clear(obj->philos), 0);
 	return (1);
 }
+	//!
+	// item = obj->philos;
+	// i = -1;
+	// while (++i < obj->settings.num_of_philos)
+	// {
+	// 	philosopher = (t_philosopher *)item->content;
+	// 	if (pthread_join(philosopher->thrd, NULL) != 0)
+	// 		return (0);
+	// 	item = item->next;
+	// }

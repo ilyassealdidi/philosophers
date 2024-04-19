@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/14 16:06:25 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/18 11:07:23 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,22 @@ typedef struct s_settings
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int 			num_of_meals;
+	int				num_of_meals;
 }	t_settings;
+
+typedef struct s_tools
+{
+	pthread_mutex_t	printing_mtx;
+	pthread_mutex_t	philo_mtx;
+	pthread_mutex_t	mtx;
+}	t_tools;
 
 typedef struct s_object
 {
 	t_settings		settings;
 	t_list			*philos;
-	int				zombie;
+	t_tools			tools;
+	bool			is_ended;
 	unsigned long	start_time;
 }	t_object;
 
@@ -53,9 +61,19 @@ typedef struct s_philosopher
 	t_object		*_parent;
 }	t_philosopher;
 
+/*		Utils			*/
+void    sleeper(long time);
+long	get_current_time(void);
+void	set_value(pthread_mutex_t *mtx, long *target, long value);
+long	get_value(pthread_mutex_t *mtx, long *target);
 
-void	*routine(void *param);
-int		philos_init(t_object *obj);
+/*		Parsing			*/
 int		settings_init(t_settings *settings, char **param);
+
+/*		Initializer		*/
+int		philos_init(t_object *obj);
+
+/*		Program			*/
+void	*routine(void *param);
 
 #endif
