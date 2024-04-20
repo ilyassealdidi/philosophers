@@ -6,20 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:35:08 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/20 15:14:23 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/20 19:15:34 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philosophers.h"
-
-bool	is_dead(t_philosopher *philo)
-{
-	size_t	time;
-
-	time = get_current_time();
-	return ((get_current_time() - philo->last_eating_time)
-		>= (philo->_parent->settings.time_to_die));
-}
 
 bool	is_ended(t_object *obj)
 {
@@ -31,11 +22,14 @@ bool	is_ended(t_object *obj)
 	return (value);
 }
 
-void	print_action(t_philosopher *philo, char *action)
+void	print_action(t_philo *philo, char *action)
 {
 	size_t	time;
 
+	pthread_mutex_lock(&philo->_parent->tools.print_locker);
 	time = get_current_time() - philo->_parent->start_time;
 	printf("%ld %d %s\n", time, philo->id, action);
+	if (*action != 'd')
+		pthread_mutex_unlock(&philo->_parent->tools.print_locker);
 	return ;
 }

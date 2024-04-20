@@ -1,7 +1,7 @@
 SRCS = $(shell find . -name "*.c")
 OBJS_DIR = obj/
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
-CFLAGS = -pthread #-Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror
 INC = include/philosophers.h
 NAME = philo
 
