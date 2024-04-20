@@ -9,6 +9,7 @@
                 "-pthread",
                 "philo/src/*.c",
                 "philo/utils/*.c",
+                "philo/src/action/*.c",
                 "-o",
                 "philo_db"
             ],

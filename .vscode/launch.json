@@ -10,8 +10,8 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/philo_db",
 			"args": [
-				"2",
-				"70",
+				"3",
+				"600",
 				"200",
 				"200"
 			],
