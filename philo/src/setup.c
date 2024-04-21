@@ -6,11 +6,21 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/20 19:18:46 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/21 11:59:43 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+static int	mutexes_init(t_object *obj)
+{
+	if (pthread_mutex_init(&obj->tools.print_locker, NULL) != 0
+		|| pthread_mutex_init(&obj->tools.end_locker, NULL) != 0
+		|| pthread_mutex_init(&obj->tools.die_locker, NULL) != 0
+		|| pthread_mutex_init(&obj->tools.eat_locker, NULL) != 0)
+		return (0);
+	return (1);
+}
 
 static t_philo	*create_philosopher(int id, t_object *parent)
 {
@@ -36,7 +46,7 @@ static int	threads_init(t_list *philos, int count)
 	while (++i < count)
 	{
 		philo = (t_philo *)philos->content;
-		if (pthread_create(&philo->thrd, NULL, routine, philos->content) != 0)
+		if (pthread_create(&philo->thrd, NULL, action, philos->content) != 0)
 			return (0);
 		philos = philos->next;
 	}
@@ -49,10 +59,8 @@ int	philos_init(t_object *obj)
 	t_list		*item;
 	t_philo		*philosopher;
 
-	pthread_mutex_init(&obj->tools.print_locker, NULL);
-	pthread_mutex_init(&obj->tools.die_locker, NULL);
-	pthread_mutex_init(&obj->tools.die_locker, NULL);
-	pthread_mutex_init(&obj->tools.eat_locker, NULL);
+	if (mutexes_init(obj) == 0)
+		return (0);
 	i = -1;
 	while (++i < obj->settings.num_of_philos)
 	{

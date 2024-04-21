@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 22:23:25 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/20 19:21:31 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/04/21 12:05:57 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include "../include/philosophers.h"
 
 void	monitoring(t_object *obj)
 {
@@ -31,7 +31,7 @@ void	monitoring(t_object *obj)
 		pthread_mutex_lock(&obj->tools.die_locker);
 		if ((get_current_time() - philo->last_eating_time)
 			>= obj->settings.time_to_die)
-			return (obj->ended = true, print_action(philo, "dead"));
+			return (obj->ended = true, print_action(philo, DIE));
 		pthread_mutex_unlock(&obj->tools.die_locker);
 		philos = philos->next;
 	}

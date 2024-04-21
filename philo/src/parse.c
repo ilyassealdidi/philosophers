@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:36:49 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/20 18:15:49 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/21 10:13:56 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ static int	get_number(char *str)
 	return (num);
 }
 
-int	settings_init(t_settings *settings, char **param)
+int	settings_init(t_settings *s, char **param)
 {
-	settings->num_of_philos = get_number(param[0]);
-	settings->time_to_die = get_number(param[1]);
-	settings->time_to_eat = get_number(param[2]);
-	settings->time_to_sleep = get_number(param[3]);
-	settings->num_of_meals = get_number(param[4]);
-	return (settings->num_of_philos > 0
-		&& settings->num_of_philos <= 200
-		&& settings->time_to_die >= 60
-		&& settings->time_to_eat >= 60
-		&& settings->time_to_sleep >= 60
-		&& settings->num_of_meals != 0);
+	s->num_of_philos = get_number(param[0]);
+	s->time_to_die = get_number(param[1]);
+	s->time_to_eat = get_number(param[2]);
+	s->time_to_sleep = get_number(param[3]);
+	s->num_of_meals = get_number(param[4]);
+	if (s->time_to_eat > s->time_to_sleep)
+		s->time_to_think = s->time_to_eat - s->time_to_sleep;
+	return (s->num_of_philos > 0
+		&& s->num_of_philos <= 200
+		&& s->time_to_die >= 60
+		&& s->time_to_eat >= 60
+		&& s->time_to_sleep >= 60
+		&& s->num_of_meals != 0);
 }
