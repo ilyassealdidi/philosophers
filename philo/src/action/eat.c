@@ -6,15 +6,17 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:20 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 11:36:02 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/22 10:25:04 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philosophers.h"
 
-static int	take_fork(t_philo *philo)
+static int	take_fork(t_philo *philo, pthread_mutex_t *fork)
 {
-	pthread_mutex_lock(&philo->fork);
+	if (philo->eating_counter == philo->_parent->settings.num_of_meals)
+		return (0);
+	pthread_mutex_lock(fork);
 	if (is_ended(philo->_parent))
 		return (0);
 	print_action(philo, TAKE_FORK);
@@ -28,9 +30,9 @@ int	eat(t_philo *philo)
 
 	obj = philo->_parent;
 	sib = get_next_philo(philo);
-	if (take_fork(philo) == 0)
+	if (take_fork(philo, &philo->fork) == 0)
 		return (0);
-	if (take_fork(sib) == 0)
+	if (take_fork(philo, &sib->fork) == 0)
 		return (0);
 	print_action(philo, EAT);
 	pthread_mutex_lock(&obj->tools.die_locker);
