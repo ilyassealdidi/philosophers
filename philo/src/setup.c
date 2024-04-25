@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 11:59:43 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:52:54 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	mutexes_init(t_object *obj)
 {
 	if (pthread_mutex_init(&obj->tools.print_locker, NULL) != 0
 		|| pthread_mutex_init(&obj->tools.end_locker, NULL) != 0
-		|| pthread_mutex_init(&obj->tools.die_locker, NULL) != 0
-		|| pthread_mutex_init(&obj->tools.eat_locker, NULL) != 0)
+		|| pthread_mutex_init(&obj->tools.obj_locker, NULL) != 0
+		|| pthread_mutex_init(&obj->tools.philo_locker, NULL) != 0)
 		return (0);
 	return (1);
 }

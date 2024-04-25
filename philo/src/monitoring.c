@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/25 13:17:05 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:49:49 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	monitoring(t_object *obj)
 	while (1)
 	{
 		philo = philos->content;
-		pthread_mutex_lock(&obj->tools.eat_locker);
+		pthread_mutex_lock(&obj->tools.obj_locker);
 		if (philo->_parent->finished == philo->_parent->settings.num_of_philos)
 			return (obj->ended = true, exiter(obj));
-		pthread_mutex_unlock(&obj->tools.eat_locker);
-		pthread_mutex_lock(&obj->tools.die_locker);
+		pthread_mutex_unlock(&obj->tools.obj_locker);
+		pthread_mutex_lock(&obj->tools.philo_locker);
 		if ((get_current_time() - philo->last_eating_time)
 			> obj->settings.time_to_die)
 			return (obj->ended = true, print_action(philo, DIE), exiter(obj));
-		pthread_mutex_unlock(&obj->tools.die_locker);
+		pthread_mutex_unlock(&obj->tools.philo_locker);
 		philos = philos->next;
 	}
 }

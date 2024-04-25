@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 11:42:02 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:49:53 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_tools
 {
 	pthread_mutex_t	end_locker;
 	pthread_mutex_t	print_locker;
-	pthread_mutex_t	die_locker;
-	pthread_mutex_t	eat_locker;
+	pthread_mutex_t	philo_locker;
+	pthread_mutex_t	obj_locker;
 }	t_tools;
 
 typedef struct s_object

@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:35:08 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 12:01:23 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 17:10:47 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,14 @@ void	print_action(t_philo *philo, char *action)
 
 t_philo	*get_next_philo(t_philo *philo)
 {
-	int				i;
 	t_list			*philos;
 
-	i = 1;
 	philos = philo->_parent->philos;
-	while (i < philo->_parent->settings.num_of_philos)
+	while (1)
 	{
 		if (philo->id == ((t_philo *)(philos->content))->id)
 			break ;
 		philos = philos->next;
-		i++;
 	}
 	return (philos->next->content);
 }
