@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 00:38:11 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/12 17:17:26 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:17:46 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	lst_iter(t_list *lst, void (*f)(void *))
 		f(lst->content);
 		if (lst->next == head)
 			break ;
+		lst = lst->next;
 	}
 }

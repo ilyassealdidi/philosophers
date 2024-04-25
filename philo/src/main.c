@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:01 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 12:00:29 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 13:19:24 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int	main(int ac, char *av[])
 	if (philos_init(&obj) == 0)
 		return (EXIT_FAILURE);
 	monitoring(&obj);
-	lst_clear(obj.philos);
 	return (EXIT_SUCCESS);
 }
