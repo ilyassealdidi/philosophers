@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:20 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/22 10:25:04 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/25 18:39:20 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,18 @@ int	eat(t_philo *philo)
 
 	obj = philo->_parent;
 	sib = get_next_philo(philo);
-	if (take_fork(philo, &philo->fork) == 0)
-		return (0);
-	if (take_fork(philo, &sib->fork) == 0)
+	if (!take_fork(philo, &philo->fork) || !take_fork(philo, &sib->fork))
 		return (0);
 	print_action(philo, EAT);
-	pthread_mutex_lock(&obj->tools.die_locker);
+	pthread_mutex_lock(&obj->tools.philo_locker);
 	philo->last_eating_time = get_current_time();
-	pthread_mutex_unlock(&obj->tools.die_locker);
-	pthread_mutex_lock(&philo->_parent->tools.eat_locker);
+	pthread_mutex_unlock(&obj->tools.philo_locker);
+	sleeper(obj->settings.time_to_eat);
 	philo->eating_counter++;
+	pthread_mutex_lock(&philo->_parent->tools.obj_locker);
 	if (philo->eating_counter == obj->settings.num_of_meals)
 		obj->finished++;
-	pthread_mutex_unlock(&philo->_parent->tools.eat_locker);
-	sleeper(obj->settings.time_to_eat);
+	pthread_mutex_unlock(&philo->_parent->tools.obj_locker);
 	pthread_mutex_unlock(&philo->fork);
 	pthread_mutex_unlock(&sib->fork);
 	return (1);

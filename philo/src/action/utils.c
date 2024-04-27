@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:35:08 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/25 17:10:47 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/27 08:30:49 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ bool	is_ended(t_object *obj)
 {
 	int		value;
 
-	pthread_mutex_lock(&obj->tools.end_locker);
+	pthread_mutex_lock(&obj->tools.extra_locker);
 	value = obj->ended;
-	pthread_mutex_unlock(&obj->tools.end_locker);
+	pthread_mutex_unlock(&obj->tools.extra_locker);
 	return (value);
 }
 
@@ -26,11 +26,11 @@ void	print_action(t_philo *philo, char *action)
 {
 	long	time;
 
-	pthread_mutex_lock(&philo->_parent->tools.print_locker);
+	pthread_mutex_lock(&philo->_parent->tools.extra_locker);
 	time = get_current_time() - philo->_parent->start_time;
 	printf(action, time, philo->id, action);
 	if (*action != 'd')
-		pthread_mutex_unlock(&philo->_parent->tools.print_locker);
+		pthread_mutex_unlock(&philo->_parent->tools.extra_locker);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/25 16:49:53 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/04/27 08:30:16 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ typedef struct s_settings
 
 typedef struct s_tools
 {
-	pthread_mutex_t	end_locker;
-	pthread_mutex_t	print_locker;
 	pthread_mutex_t	philo_locker;
 	pthread_mutex_t	obj_locker;
+	pthread_mutex_t	extra_locker;
 }	t_tools;
 
 typedef struct s_object
