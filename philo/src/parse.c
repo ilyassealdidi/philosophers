@@ -22,9 +22,9 @@ static int	get_number(char *str)
 	while (*str >= '0' && *str <= '9')
 		num = num * 10 + (*str++ - '0');
 	if (*str)
-		return (-1);
+		return (0);
 	if (num > INT_MAX || num < INT_MIN)
-		return (-1);
+		return (0);
 	return (num);
 }
 
