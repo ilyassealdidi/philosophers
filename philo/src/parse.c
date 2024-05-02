@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:36:49 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/21 10:13:56 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/01 20:37:20 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	settings_init(t_settings *s, char **param)
 	s->time_to_eat = get_number(param[2]);
 	s->time_to_sleep = get_number(param[3]);
 	s->num_of_meals = get_number(param[4]);
-	if (s->time_to_eat > s->time_to_sleep)
-		s->time_to_think = s->time_to_eat - s->time_to_sleep;
 	return (s->num_of_philos > 0
 		&& s->num_of_philos <= 200
 		&& s->time_to_die >= 60

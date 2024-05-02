@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/27 08:31:12 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:29:46 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	mutexes_init(t_object *obj)
 {
 	if (pthread_mutex_init(&obj->tools.extra_locker, NULL) != 0
 		|| pthread_mutex_init(&obj->tools.obj_locker, NULL) != 0
+		|| pthread_mutex_init(&obj->tools.print_locker, NULL) != 0
 		|| pthread_mutex_init(&obj->tools.philo_locker, NULL) != 0)
 		return (0);
 	return (1);
@@ -45,7 +46,7 @@ static int	threads_init(t_list *philos, int count)
 	while (++i < count)
 	{
 		philo = (t_philo *)philos->content;
-		if (pthread_create(&philo->thrd, NULL, action, philos->content) != 0)
+		if (pthread_create(&philo->thrd, NULL, action, philos) != 0)
 			return (0);
 		philos = philos->next;
 	}
