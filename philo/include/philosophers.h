@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/02 12:11:43 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 09:43:54 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define EAT "\033[1;32m%ld\t%d is eating\033[1;0m 🍝\n"
 # define SLEEP "\033[0;36m%ld\t%d is sleeping\033[1;0m 💤\n"
 # define DIE "\033[1;31m%ld\t%d dead\033[1;0m 💀\n"
-# define TAKE_FORK "\033[0;0m%ld\t%d is has taken a fork\033[1;0m 🍽️\n"
+# define TAKE_FORK "\033[0;0m%ld\t%d has taken a fork\033[1;0m 🍽️\n"
 
 /*		Parsing			*/
 int		settings_init(t_settings *settings, char **param);

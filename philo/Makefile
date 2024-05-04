@@ -4,7 +4,7 @@ SRCS = ./src/action/action.c ./src/action/eat.c ./src/action/sleep.c ./src/actio
 	./utils/lst_last.c ./utils/lst_new.c ./utils/lst_size.c
 OBJS_DIR = obj/
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
-CFLAGS = -pthread #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 INC = include/philosophers.h
 NAME = philo
 

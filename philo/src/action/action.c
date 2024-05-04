@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:12:24 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/01 12:22:15 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:14:59 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	*action(void *param)
 	while (philo->_parent->start_time == 0)
 		;
 	philo->last_eating_time = get_current_time();
-	if (philo->id % 2 == 1)
-		usleep(philo->_parent->settings.time_to_eat * 1000);
+	if (philo->id % 2 == 0)
+		sleeper(philo->_parent->settings.time_to_eat / 2);
 	while (1)
 	{
 		if (eat(param) == 0 || bedtime(philo) == 0 || think(philo) == 0)

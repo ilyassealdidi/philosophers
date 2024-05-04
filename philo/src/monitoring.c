@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/02 12:33:10 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:15:58 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	monitoring(t_object *obj)
 
 	while (obj->start_time == 0)
 		;
-	sleeper(obj->settings.time_to_eat);
+	sleeper(obj->settings.time_to_die / 2);
 	philos = obj->philos;
 	while (1)
 	{

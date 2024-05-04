@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:36:49 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/01 20:37:20 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 11:31:07 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	get_number(char *str)
 	while (*str >= '0' && *str <= '9')
 		num = num * 10 + (*str++ - '0');
 	if (*str)
-		return (0);
+		return (-2);
 	if (num > INT_MAX || num < INT_MIN)
-		return (0);
+		return (-2);
 	return (num);
 }
 
@@ -40,5 +40,5 @@ int	settings_init(t_settings *s, char **param)
 		&& s->time_to_die >= 60
 		&& s->time_to_eat >= 60
 		&& s->time_to_sleep >= 60
-		&& s->num_of_meals != 0);
+		&& s->num_of_meals != -2);
 }
