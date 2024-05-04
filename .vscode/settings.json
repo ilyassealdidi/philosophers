@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"philosophers.h": "c"
+		"philosophers.h": "c",
+		"time.h": "c",
+		"limits.h": "c",
+		"stdlib.h": "c",
+		"stdbool.h": "c",
+		"unistd.h": "c"
 	}
 }

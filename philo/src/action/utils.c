@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:35:08 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/27 08:30:49 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:17:23 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,9 @@ void	print_action(t_philo *philo, char *action)
 {
 	long	time;
 
-	pthread_mutex_lock(&philo->_parent->tools.extra_locker);
+	pthread_mutex_lock(&philo->_parent->tools.print_locker);
 	time = get_current_time() - philo->_parent->start_time;
 	printf(action, time, philo->id, action);
-	if (*action != 'd')
-		pthread_mutex_unlock(&philo->_parent->tools.extra_locker);
-	return ;
-}
-
-t_philo	*get_next_philo(t_philo *philo)
-{
-	t_list			*philos;
-
-	philos = philo->_parent->philos;
-	while (1)
-	{
-		if (philo->id == ((t_philo *)(philos->content))->id)
-			break ;
-		philos = philos->next;
-	}
-	return (philos->next->content);
+	if (action[14] != 'd')
+		pthread_mutex_unlock(&philo->_parent->tools.print_locker);
 }

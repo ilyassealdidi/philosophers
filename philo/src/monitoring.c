@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/25 16:49:49 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/04 10:15:58 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	monitoring(t_object *obj)
 
 	while (obj->start_time == 0)
 		;
-	sleeper(50);
+	sleeper(obj->settings.time_to_die / 2);
 	philos = obj->philos;
 	while (1)
 	{
@@ -42,7 +42,7 @@ void	monitoring(t_object *obj)
 		pthread_mutex_unlock(&obj->tools.obj_locker);
 		pthread_mutex_lock(&obj->tools.philo_locker);
 		if ((get_current_time() - philo->last_eating_time)
-			> obj->settings.time_to_die)
+			>= obj->settings.time_to_die)
 			return (obj->ended = true, print_action(philo, DIE), exiter(obj));
 		pthread_mutex_unlock(&obj->tools.philo_locker);
 		philos = philos->next;

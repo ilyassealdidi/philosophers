@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:20 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/04/25 18:39:20 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/02 09:23:05 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@ static int	take_fork(t_philo *philo, pthread_mutex_t *fork)
 	return (1);
 }
 
-int	eat(t_philo *philo)
+int	eat(t_list *node)
 {
 	t_object	*obj;
+	t_philo		*philo;
 	t_philo		*sib;
 
+	philo = node->content;
+	sib = node->next->content;
 	obj = philo->_parent;
-	sib = get_next_philo(philo);
-	if (!take_fork(philo, &philo->fork) || !take_fork(philo, &sib->fork))
+	if (!take_fork(philo, &philo->fork))
+		return (0);
+	if (!take_fork(philo, &sib->fork))
 		return (0);
 	print_action(philo, EAT);
 	pthread_mutex_lock(&obj->tools.philo_locker);
