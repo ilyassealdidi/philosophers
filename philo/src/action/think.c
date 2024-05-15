@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/02 09:22:23 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include <philosophers.h>
 
 int	think(t_philo *philo)
 {

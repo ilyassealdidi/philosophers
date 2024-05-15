@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 22:12:24 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/04 10:14:59 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include <philosophers.h>
 
 void	*action(void *param)
 {

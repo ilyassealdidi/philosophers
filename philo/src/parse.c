@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:36:49 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/04 11:31:07 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:20:40 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#include <philosophers.h>
 
 static int	get_number(char *str)
 {

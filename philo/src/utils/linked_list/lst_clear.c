@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   lst_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 11:33:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/04/03 00:38:33 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/05/15 08:20:23 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers.h>
+#include <utils.h>
 
-int	bedtime(t_philo *philo)
+void	lst_clear(t_list *lst)
 {
-	if (is_ended(philo->_parent) == true)
-		return (0);
-	print_action(philo, SLEEP);
-	sleeper(philo->_parent->settings.time_to_sleep);
-	return (1);
+	t_list	*tmp;
+
+	if (!lst)
+		return ;
+	lst_last(lst)->next = NULL;
+	while (lst)
+	{
+		tmp = lst->next;
+		lst_delone(lst, free);
+		lst = tmp;
+	}
 }

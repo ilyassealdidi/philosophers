@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:01 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/04 11:33:12 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:20:40 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosophers.h"
+#include <philosophers.h>
 
 int	main(int ac, char *av[])
 {

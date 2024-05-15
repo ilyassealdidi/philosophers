@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:20 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/02 09:23:05 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosophers.h"
+#include <philosophers.h>
 
 static int	take_fork(t_philo *philo, pthread_mutex_t *fork)
 {

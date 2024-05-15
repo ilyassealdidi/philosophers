@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   lst_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 11:33:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/04/03 00:35:40 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/05/15 08:20:23 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers.h>
+#include <utils.h>
 
-int	bedtime(t_philo *philo)
+t_list	*lst_new(void *content)
 {
-	if (is_ended(philo->_parent) == true)
-		return (0);
-	print_action(philo, SLEEP);
-	sleeper(philo->_parent->settings.time_to_sleep);
-	return (1);
+	t_list	*head;
+
+	head = (t_list *)malloc(sizeof(t_list));
+	if (!head)
+		return (NULL);
+	head->content = content;
+	head->previous = NULL;
+	head->next = NULL;
+	return (head);
 }

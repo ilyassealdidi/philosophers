@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 11:33:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/04/15 23:23:23 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/05/15 08:20:40 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-int	bedtime(t_philo *philo)
+long	get_current_time(void)
 {
-	if (is_ended(philo->_parent) == true)
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) != 0)
 		return (0);
-	print_action(philo, SLEEP);
-	sleeper(philo->_parent->settings.time_to_sleep);
-	return (1);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	sleeper(long time)
+{
+	long	start;
+
+	start = get_current_time();
+	while (get_current_time() - start < time)
+		usleep(500);
 }
