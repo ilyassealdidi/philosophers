@@ -1,0 +1,5 @@
+Datarace :
+	start_time			obj
+	finished			obj
+	last_eating_time	philo
+	ended				obj

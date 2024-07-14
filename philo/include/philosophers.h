@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/04 09:43:54 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/14 02:27:33 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@
 # define DIE "\033[1;31m%ld\t%d dead\033[1;0m 💀\n"
 # define TAKE_FORK "\033[0;0m%ld\t%d has taken a fork\033[1;0m 🍽️\n"
 
+/*		tbn				*/
+long	read_value(pthread_mutex_t *mutex, long *var);
+long	write_value(pthread_mutex_t *mutex, long *var, long new_value);
+
+
 /*		Parsing			*/
 int		settings_init(t_settings *settings, char **param);
 
@@ -51,7 +56,8 @@ t_philo	*get_next_philo(t_philo *philo);
 void	print_action(t_philo *philo, char *action);
 
 /*		Time			*/
-void	sleeper(long time);
+void	sleeper(t_object *obj, long time);
 long	get_current_time(void);
+
 
 #endif

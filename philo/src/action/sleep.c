@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:54 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/14 05:24:56 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	bedtime(t_philo *philo)
 {
-	if (is_ended(philo->_parent) == true)
+	t_object	*obj;
+
+	obj = philo->_parent;
+	if (read_value(&obj->obj_lock, &obj->ended) == 1)
 		return (0);
 	print_action(philo, SLEEP);
-	sleeper(philo->_parent->settings.time_to_sleep);
+	sleeper(obj, philo->_parent->settings.time_to_sleep);
 	return (1);
 }

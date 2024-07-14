@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 23:23:23 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/14 23:59:48 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/07/13 01:58:00 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/07/15 00:24:11 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-long	get_current_time(void)
+long	read_value(pthread_mutex_t *mutex, long *var)
 {
-	struct timeval	tv;
+	long	ret;
 
-	if (gettimeofday(&tv, NULL) != 0)
-		return (0);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	pthread_mutex_lock(mutex);
+	ret = *((long *)var);
+	pthread_mutex_unlock(mutex);
+	return (ret);
 }
 
-void	sleeper(t_object *obj, long time)
+long   write_value(pthread_mutex_t *mutex, long *var, long new_value)
 {
-	long	start;
+	long	*ptr;
 
-	start = get_current_time();
-	while (read_value(&obj->obj_lock, &obj->ended) == 0
-		&& get_current_time() - start < time)
-		usleep(400);
+	ptr = (long *)var;
+	pthread_mutex_lock(mutex);
+	if (new_value == 0)
+		*ptr = *ptr + 1;
+	else
+		*ptr = new_value;
+	pthread_mutex_unlock(mutex);
+	return (*ptr);
 }

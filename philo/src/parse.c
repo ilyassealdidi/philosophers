@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:36:49 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:40 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/13 01:15:52 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static int	get_number(char *str)
 {
 	long	num;
 
-	if (!str)
+	if (!*str)
 		return (-1);
 	num = 0;
 	while (*str >= '0' && *str <= '9')
 		num = num * 10 + (*str++ - '0');
 	if (*str)
-		return (-2);
+		return (-1);
 	if (num > INT_MAX || num < INT_MIN)
-		return (-2);
+		return (-1);
 	return (num);
 }
 
@@ -34,11 +34,13 @@ int	settings_init(t_settings *s, char **param)
 	s->time_to_die = get_number(param[1]);
 	s->time_to_eat = get_number(param[2]);
 	s->time_to_sleep = get_number(param[3]);
-	s->num_of_meals = get_number(param[4]);
+	s->num_of_meals = -2;
+	if (param[4] != NULL)
+		s->num_of_meals = get_number(param[4]);
 	return (s->num_of_philos > 0
 		&& s->num_of_philos <= 200
 		&& s->time_to_die >= 60
 		&& s->time_to_eat >= 60
 		&& s->time_to_sleep >= 60
-		&& s->num_of_meals != -2);
+		&& s->num_of_meals != -1);
 }
