@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 11:33:32 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/21 00:12:52 by ialdidi          ###   ########.fr       */
+/*   Created: 2024/07/21 03:47:03 by ialdidi           #+#    #+#             */
+/*   Updated: 2024/07/21 03:50:19 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers.h>
+#include <unistd.h>
 
-int	bedtime(t_philo *philo)
+static int  ft_strlen(char *str)
 {
-	if (is_ended(philo->_parent))
-		return (0);
-	print_action(philo, SLEEP);
-	sleeper(philo->_parent, philo->_parent->settings.time_to_sleep);
-	return (1);
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	print_error(char *str)
+{
+	write(2, str, ft_strlen(str));
 }

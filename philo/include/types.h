@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:10:03 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/14 04:17:11 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 03:30:05 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 typedef struct s_settings
 {
-	int				num_of_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_think;
-	int				time_to_sleep;
+	unsigned int	num_of_philos;
+	unsigned int	time_to_die;
+	unsigned int	time_to_eat;
+	unsigned int	time_to_think;
+	unsigned int	time_to_sleep;
 	int				num_of_meals;
 }	t_settings;
 
@@ -31,14 +31,16 @@ typedef struct s_object
 	t_settings		settings;
 	t_list			*philos;
 	pthread_mutex_t	obj_lock;
+	pthread_mutex_t	print_lock;
+	pthread_mutex_t	meals_lock;
 	long			start_time;
-	long			finished;
+	long			full_philos;
 	long			ended;
 }	t_object;
 
 typedef struct s_philo
 {
-	int				id;
+	unsigned int	id;
 	int				eaten_meals;
 	long			last_eating_time;
 	pthread_t		thrd;

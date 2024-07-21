@@ -6,11 +6,16 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 01:58:00 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/15 00:24:11 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 04:11:15 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
+
+bool	is_ended(t_object *obj)
+{
+	return (read_value(&obj->obj_lock, &obj->ended));
+}
 
 long	read_value(pthread_mutex_t *mutex, long *var)
 {
@@ -22,16 +27,12 @@ long	read_value(pthread_mutex_t *mutex, long *var)
 	return (ret);
 }
 
-long   write_value(pthread_mutex_t *mutex, long *var, long new_value)
+void   write_value(pthread_mutex_t *mutex, long *var, long new_value)
 {
-	long	*ptr;
-
-	ptr = (long *)var;
 	pthread_mutex_lock(mutex);
 	if (new_value == 0)
-		*ptr = *ptr + 1;
+		*var = *var + 1;
 	else
-		*ptr = new_value;
+		*var = new_value;
 	pthread_mutex_unlock(mutex);
-	return (*ptr);
 }

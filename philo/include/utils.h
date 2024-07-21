@@ -6,17 +6,14 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 00:34:51 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/02 23:20:44 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 03:31:05 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <stdbool.h>
 
 typedef struct s_list
 {

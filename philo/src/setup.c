@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/14 04:39:31 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 03:56:03 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_philo	*create_philosopher(int id, t_object *parent)
 
 	philo = (t_philo *)malloc(sizeof(t_philo));
 	if (philo == NULL)
-		return (NULL);
+		return (print_error(MALLOC_ERROR), NULL);
 	philo->id = id;
 	philo->eaten_meals = 0;
 	philo->_parent = parent;
@@ -46,12 +46,12 @@ static int	threads_init(t_list *philos, int count)
 
 int	philos_init(t_object *obj)
 {
-	int			i;
-	t_list		*node;
-	t_philo		*philosopher;
+	unsigned int	i;
+	t_list			*node;
+	t_philo			*philosopher;
 
-	i = -1;
-	while (++i < obj->settings.num_of_philos)
+	i = 0;
+	while (i < obj->settings.num_of_philos)
 	{
 		philosopher = create_philosopher(i + 1, obj);
 		if (philosopher == NULL)
@@ -60,10 +60,11 @@ int	philos_init(t_object *obj)
 		if (node == NULL)
 			return (free(philosopher), lst_clear(obj->philos), 0);
 		lst_addback(&obj->philos, node);
+		i++;
 	}
 	if (threads_init(obj->philos, obj->settings.num_of_philos) == 0)
 		return (lst_clear(obj->philos), 0);
-	if (write_value(&obj->obj_lock, &obj->start_time, get_current_time()) == 0)
+	if (set_current_time(&obj->obj_lock, &obj->start_time) == 0)
 		return (lst_clear(obj->philos), 0);
 	return (1);
 }

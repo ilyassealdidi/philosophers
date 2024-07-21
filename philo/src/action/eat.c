@@ -6,22 +6,18 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:20 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/15 00:13:12 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 04:12:25 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-static int	take_fork(t_philo *philo, pthread_mutex_t *fork)
+static void	take_forks(t_philo *philo, t_philo *sib)
 {
-	t_object	*obj;
-
-	obj = philo->_parent;
-	pthread_mutex_lock(fork);
-	if (read_value(&obj->obj_lock, &obj->ended) == 1)
-		return (0);
+	pthread_mutex_lock(&philo->fork);
 	print_action(philo, TAKE_FORK);
-	return (1);
+	pthread_mutex_lock(&sib->fork);
+	print_action(philo, TAKE_FORK);
 }
 
 static void release_forks(t_philo *philo, t_philo *sib)
@@ -39,13 +35,15 @@ int	eat(t_list *node)
 	philo = node->content;
 	sib = node->next->content;
 	obj = philo->_parent;
-	if (!take_fork(philo, &philo->fork) || !take_fork(philo, &sib->fork))
+	if (philo->eaten_meals == obj->settings.num_of_meals)
+		return (write_value(&obj->meals_lock, &obj->full_philos, 0), 0);
+	if (is_ended(obj))
 		return (0);
+	take_forks(philo, sib);
+	set_current_time(&philo->lock, &philo->last_eating_time);
 	print_action(philo, EAT);
-	write_value(&philo->lock, &philo->last_eating_time, get_current_time());
 	sleeper(obj, obj->settings.time_to_eat);
 	philo->eaten_meals++;
 	release_forks(philo, sib);
-
 	return (1);
 }

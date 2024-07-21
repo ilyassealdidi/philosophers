@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/14 05:24:35 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 00:13:16 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	think(t_philo *philo)
 {
-	t_object	*obj;
-
-	obj = philo->_parent;
-	if (read_value(&obj->obj_lock, &obj->ended) == 1)
-		return (0);
+	if (is_ended(philo->_parent))
+			return (0);
 	print_action(philo, THINK);
 	return (1);
 }
