@@ -1,0 +1,7 @@
+TODO
+philo
+philo_db
+philo_db.dSYM/
+philo.dSYM/
+obj/
+.vscode/*
