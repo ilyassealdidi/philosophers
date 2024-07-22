@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:33:48 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/21 00:13:16 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/21 05:01:39 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	think(t_philo *philo)
 {
 	if (is_ended(philo->_parent))
-			return (0);
+		return (0);
 	print_action(philo, THINK);
 	return (1);
 }

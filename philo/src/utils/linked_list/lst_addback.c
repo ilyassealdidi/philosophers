@@ -6,11 +6,11 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 00:38:51 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/05/15 08:20:23 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/23 00:27:15 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <utils.h>
+#include <philosophers.h>
 
 void	lst_addback(t_list **lst, t_list *new)
 {

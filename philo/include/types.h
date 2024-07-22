@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:10:03 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/21 03:30:05 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/23 00:20:16 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,33 @@
 # define TYPES_H
 
 # include <pthread.h>
-# include "utils.h"
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*previous;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_thread
+{
+	pthread_t		thread;
+	bool			is_initialized;
+}	t_thread;
+
+typedef struct s_mutex
+{
+	pthread_mutex_t	mutex;
+	bool			is_initialized;
+}	t_mutex;
 
 typedef struct s_settings
 {
-	unsigned int	num_of_philos;
-	unsigned int	time_to_die;
-	unsigned int	time_to_eat;
-	unsigned int	time_to_think;
-	unsigned int	time_to_sleep;
+	int				num_of_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_think;
+	int				time_to_sleep;
 	int				num_of_meals;
 }	t_settings;
 
@@ -30,22 +48,21 @@ typedef struct s_object
 {
 	t_settings		settings;
 	t_list			*philos;
-	pthread_mutex_t	obj_lock;
-	pthread_mutex_t	print_lock;
-	pthread_mutex_t	meals_lock;
+	t_mutex			obj_lock;
+	t_mutex			print_lock;
+	t_mutex			meals_lock;
 	long			start_time;
-	long			full_philos;
 	long			ended;
 }	t_object;
 
 typedef struct s_philo
 {
 	unsigned int	id;
-	int				eaten_meals;
+	long			eaten_meals;
 	long			last_eating_time;
-	pthread_t		thrd;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	fork;
+	t_thread		thread;
+	t_mutex			lock;
+	t_mutex			fork;
 	t_object		*_parent;
 }	t_philo;
 

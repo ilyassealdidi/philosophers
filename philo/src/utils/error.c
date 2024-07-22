@@ -6,15 +6,15 @@
 /*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 03:47:03 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/21 03:50:19 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/23 00:28:25 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <philosophers.h>
 
-static int  ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
