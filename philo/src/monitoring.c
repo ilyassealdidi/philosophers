@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/23 00:45:35 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/23 21:06:19 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static int	is_dead(t_philo *philo)
 	return (0);
 }
 
-static int are_philos_full(t_object *obj)
+static int	are_philos_full(t_object *obj)
 {
 	t_list		*philos;
 	t_philo		*philo;
-	int	i;
+	int			i;
 
 	i = 0;
 	philos = obj->philos;

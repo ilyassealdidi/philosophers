@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:40:40 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/23 00:38:23 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/07/23 21:06:05 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
+/**
+ * Creates the necessary mutexes for the main struct.
+ * 
+ * @param obj The main struct.
+ * @return 0 if any of the mutexes failed to be created, 1 otherwise.
+ */
 static int	create_mutexes(t_object *obj)
 {
 	if (create_mutex(&obj->obj_lock) == 0
@@ -21,6 +27,14 @@ static int	create_mutexes(t_object *obj)
 	return (1);
 }
 
+/**
+ * @brief Destroys the mutexes used by the main struct.
+ * 
+ * This function destroys the mutexes used by the main struct, including
+ * the object lock, print lock, and meals lock.
+ * 
+ * @param obj The main struct.
+ */
 static void	destroy_mutexes(t_object *obj)
 {
 	destroy_mutex(&obj->obj_lock);
@@ -28,9 +42,17 @@ static void	destroy_mutexes(t_object *obj)
 	destroy_mutex(&obj->meals_lock);
 }
 
+/**
+ * Creates a new philosopher with the given ID and parent object.
+ *
+ * @param id The ID of the philosopher.
+ * @param parent The main struct.
+ * @return A pointer to the newly created philosopher,
+ * or NULL if an error occurred.
+ */
 static t_philo	*create_philo(int id, t_object *parent)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)malloc(sizeof(t_philo));
 	if (philo == NULL)
@@ -43,9 +65,18 @@ static t_philo	*create_philo(int id, t_object *parent)
 	return (philo);
 }
 
+/**
+ * Initializes threads for each philosopher.
+ *
+ * This function initializes threads for each philosopher in the given list.
+ *
+ * @param philos The list of philosophers.
+ * @param count The number of philosophers.
+ * @return Returns 1 if all threads were successfully initialized, 0 otherwise.
+ */
 static int	threads_init(t_list *philos, int count)
 {
-	t_philo		*philo;
+	t_philo	*philo;
 
 	while (count--)
 	{
@@ -57,6 +88,12 @@ static int	threads_init(t_list *philos, int count)
 	return (1);
 }
 
+/**
+ * Initializes the philosophers and their resources.
+ * 
+ * @param obj The object containing the settings and data for the philosophers.
+ * @return 1 if initialization is successful, 0 otherwise.
+ */
 int	philos_init(t_object *obj)
 {
 	int		i;
