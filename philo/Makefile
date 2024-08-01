@@ -1,6 +1,4 @@
-SRCS = src/action/action.c src/action/eat.c src/action/sleep.c src/action/think.c \
-	src/action/utils.c \
-	src/main.c src/monitoring.c src/parse.c src/setup.c \
+SRCS = src/action.c src/main.c src/monitoring.c src/parse.c src/setup.c \
 	src/utils/time.c src/utils/error.c src/utils/utils.c src/utils/mutex.c \
 	src/utils/thread.c \
 	src/utils/linked_list/lst_addback.c src/utils/linked_list/lst_addfront.c \

@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 03:47:03 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/23 00:28:25 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/08/01 08:24:57 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-static int	ft_strlen(char *str)
+/**
+ * Calculates the length of a string.
+ *
+ * @param str The input string.
+ * @return The length of the string.
+ */
+static int 	t_strlen(char *str)
 {
 	int	i;
 
@@ -22,6 +28,11 @@ static int	ft_strlen(char *str)
 	return (i);
 }
 
+/**
+ * Prints an error message to the standard error stream.
+ *
+ * @param str The error message to be printed.
+ */
 void	print_error(char *str)
 {
 	write(2, str, ft_strlen(str));

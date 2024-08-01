@@ -6,12 +6,19 @@
 /*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/23 21:06:19 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/08/01 08:43:00 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
+/**
+ * @brief Function to quit a thread.
+ *
+ * This function is responsible for quitting a thread by joining it.
+ *
+ * @param content A pointer to the thread content.
+ */
 static void	quit_thread(void *content)
 {
 	t_philo		*philo;
@@ -20,7 +27,13 @@ static void	quit_thread(void *content)
 	join_thread(&philo->thread);
 }
 
-static void	exit_program(t_object *obj)
+/**
+ * Cleans up the resources of the threads and frees the allocation list for 
+ * philos.
+ *
+ * @param obj The object to clean up.
+ */
+static void	clean_up(t_object *obj)
 {
 	if (obj->settings.num_of_philos > 1)
 		lst_iter(obj->philos, quit_thread);
@@ -29,6 +42,14 @@ static void	exit_program(t_object *obj)
 	lst_clear(obj->philos, destroy_philo);
 }
 
+/**
+ * Checks if a philosopher is dead. And prints a death message and updates
+ * the object's ended flag
+ * if the philosopher is dead.
+ *
+ * @param philo The philosopher to check.
+ * @return 1 if the philosopher is dead, 0 otherwise.
+ */
 static int	is_dead(t_philo *philo)
 {
 	long		last_eating_time;
@@ -49,12 +70,21 @@ static int	is_dead(t_philo *philo)
 	return (0);
 }
 
+/**
+ * Checks if all philosophers have eaten the required number of meals.
+ *
+ * @param obj The object containing informations about the program.
+ * @return 1 if all philosophers have eaten the required number of meals,
+ * 0 otherwise.
+ */
 static int	are_philos_full(t_object *obj)
 {
 	t_list		*philos;
 	t_philo		*philo;
 	int			i;
 
+	if (obj->settings.num_of_meals == -2)
+		return (0);
 	i = 0;
 	philos = obj->philos;
 	while (i < obj->settings.num_of_philos)
@@ -69,16 +99,21 @@ static int	are_philos_full(t_object *obj)
 	return (1);
 }
 
+/**
+ * Monitors the state of the philosophers.
+ * 
+ * @param obj The object containing informations about the program.
+ */
 void	monitoring(t_object *obj)
 {
-	t_list	*philos;
+	t_list		*philos;
 
 	sleeper(obj, obj->settings.time_to_die / 2);
 	philos = obj->philos;
 	while (1)
 	{
 		if (are_philos_full(obj) || is_dead(philos->content))
-			return (exit_program(obj));
+			return (clean_up(obj));
 		philos = philos->next;
 	}
 }

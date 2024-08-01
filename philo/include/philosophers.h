@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialdidi <ialdidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:21:07 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/07/23 00:31:19 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/08/01 08:36:12 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ void	monitoring(t_object *obj);
 
 /*		Routine			*/
 void	*action(void *param);
-int		eat(t_list *node);
-int		bedtime(t_philo *philo);
-int		think(t_philo *philo);
 
 /*		Time			*/
 void	sleeper(t_object *obj, long time);
@@ -72,7 +69,6 @@ bool	is_ended(t_object *obj);
 t_philo	*get_next_philo(t_philo *philo);
 long	read_value(t_mutex *mutex, long *var);
 void	write_value(t_mutex *mutex, long *var, long new_value);
-void	print_action(t_philo *philo, char *action);
 void	destroy_philo(void *content);
 
 /*		List Utils		*/
