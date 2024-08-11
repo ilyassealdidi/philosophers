@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 03:47:03 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/08/01 08:51:19 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/08/11 12:43:56 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param str The input string.
  * @return The length of the string.
  */
-static int	t_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
