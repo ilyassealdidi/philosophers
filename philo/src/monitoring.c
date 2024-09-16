@@ -6,7 +6,7 @@
 /*   By: ialdidi <ialdidi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:40:38 by ialdidi           #+#    #+#             */
-/*   Updated: 2024/08/01 08:43:00 by ialdidi          ###   ########.fr       */
+/*   Updated: 2024/09/16 17:53:11 by ialdidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static void	clean_up(t_object *obj)
 	if (obj->settings.num_of_philos > 1)
 		lst_iter(obj->philos, quit_thread);
 	else
+	{
+		unlock_mutex(&((t_philo *)obj->philos->content)->fork);
 		detach_thread(&((t_philo *)obj->philos->content)->thread);
+	}
 	lst_clear(obj->philos, destroy_philo);
 }
 
